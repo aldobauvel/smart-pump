@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { UserPersistenceService } from '../../../../core/services/user-persistence.service';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,12 +14,18 @@ import { Router } from '@angular/router';
 export class ToolBarComponent {
   @Input() title: string = '';
   @Input() color: string = 'primary';
+  @Input() isProfileBanner = true;
+  @Output() menuEmmit = new EventEmitter<any>()
   @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
 
   constructor(public dialog: MatDialog){}  
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogFromMenuExampleDialog, {restoreFocus: false, disableClose: true});
+  }
+
+  menuOpt(action: string) {    
+    this.menuEmmit.emit(action)
   }
 
 }

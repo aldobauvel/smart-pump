@@ -2,49 +2,37 @@
   <div class="row align-items-center min-vh-100">
     <div class="col-12">
       <div class="row justify-content-center">
-        <mat-card
-          class="example-card"
-          style="max-width: 20vw; min-width: 300px; padding: 0"
-        >
+        <mat-card class="example-card main-card">
           <div class="row justify-content-center">
-            <img
-              mat-card-image
-              src="../assets/images/logo.png"
-              style="max-width: 15vw"
-              alt="smart pump"
-            />
+            <img mat-card-image  src="../assets/images/logo.png" alt="smart pump logo"/>
           </div>
           <mat-card-content>
             <form class="example-form" [formGroup]="loginForm">
-              <mat-form-field class="example-full-width" appearance="outline">
+              <mat-form-field class="example-full-width my-3" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input
-                  type="email"
-                  matInput
-                  placeholder="Ex. pat@example.com"
-                  formControlName="email"
-                />
+                <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email" aria-label="email input"/>
+                <mat-icon matSuffix>alternate_email</mat-icon>
+                @if (loginForm.controls['email'].errors) {
+                  <mat-error role="alert">{{errorMessage}}</mat-error>
+                }
               </mat-form-field>
-              <mat-form-field class="example-full-width" appearance="outline">
+              <mat-form-field class="example-full-width my-3" appearance="outline">
                 <mat-label>Password</mat-label>
-                <input type="password" matInput formControlName="password" />
+                <input type="password" matInput formControlName="password" aria-label="password input"/>
+                <mat-icon matSuffix>password</mat-icon>
+                @if (loginForm.controls['password'].errors) {
+                  <mat-error role="alert">{{errorMessage}}</mat-error>
+                }
               </mat-form-field>
             </form>
           </mat-card-content>
           <div class="marginLeftLarge marginRightLarge marginBottomLarge">
-            <button
-              mat-raised-button
-              color="primary"
-              class="example-full-width"
-              (click)="login()"
-            >
+            <button role="button" mat-raised-button color="primary" role="button" class="example-full-width" (click)="login()" aria-label="Login button">
               Login
             </button>
           </div>
           <mat-card-footer>
-            <app-progress-bar
-              [isVisible]="isProgressBarVisible"
-            ></app-progress-bar>
+            <app-progress-bar [isVisible]="isProgressBarVisible"></app-progress-bar>
           </mat-card-footer>
         </mat-card>
       </div>

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { User } from '../../../shared/interfaces/User.interface';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserPersistenceService } from '../../../core/services/user-persistence.service';
 import { delay, takeUntil } from 'rxjs';
@@ -15,17 +15,19 @@ import { delay, takeUntil } from 'rxjs';
 
 export class AccountComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  errorMessage = 'You must enter a valid value';
   titlePage = 'Account';
   isBalanceDataShow = true;  
   userData! : User;
   hasSubscription = true;
   isProgressBarVisible = false;
   personalDetailsForm: FormGroup = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    age: [''],
-    phone: [''],
-    address: [''],
+    firstName: ['', [ Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)] ],
+    lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)] ],
+    age: ['', [ Validators.required, Validators.min(18), Validators.max(120), Validators.pattern(/^\d+$/)] ],
+    phone: ['', [ Validators.required, ] ],
+    address: ['', [ Validators.required, ]],
+    email: ['', [ Validators.required, Validators.email ]],
   })  
   constructor(
     private fb: FormBuilder,
@@ -85,9 +87,14 @@ export class AccountComponent implements OnInit {
     this.personalDetailsForm.controls['age'].setValue(userData.age);
     this.personalDetailsForm.controls['phone'].setValue(userData.phone);
     this.personalDetailsForm.controls['address'].setValue(userData.address);
+    this.personalDetailsForm.controls['email'].setValue(userData.email);
   }
 
   editPersonalDetails() {
+    if (this.personalDetailsForm.invalid) {
+      this.personalDetailsForm.markAllAsTouched();
+      return this.openSnackBar('You must enter a valid value', 'Close');
+    } 
     this.isProgressBarVisible = true;
     const { balance, company, email, eyeColor, guid, isActive, password, picture, _id}  = this.userData
     const editedUser: User = {
@@ -111,7 +118,7 @@ export class AccountComponent implements OnInit {
 
     this.accountService.updateUser(editedUser)
     .pipe(
-      delay(1000)
+      delay(2000)
     )
     .subscribe({
       next: res => {
@@ -130,9 +137,13 @@ export class AccountComponent implements OnInit {
   
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+      verticalPosition: 'top',
     });
+  }
+
+  menuEvt(ev:any){    
+    this.isBalanceDataShow = ev === 'balance' ? true : false
   }
 
 }

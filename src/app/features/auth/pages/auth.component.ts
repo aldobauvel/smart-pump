@@ -15,6 +15,7 @@ import { UserPersistenceService } from '../../../core/services/user-persistence.
 })
 export class AuthComponent {
   isProgressBarVisible = false;
+  errorMessage = 'You must enter a valid value';
   
   constructor(
     private authService: AuthService, private fb: FormBuilder, 
@@ -23,17 +24,23 @@ export class AuthComponent {
   ){}
 
   loginForm: FormGroup = this.fb.group({
-    email: ['henderson.briggs@geeknet.net', [Validators.required]],
-    password: ['23derd*334', [Validators.required]],
+    //email: ['henderson.briggs@geeknet.net', [Validators.required, Validators.pattern(/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim)]],
+    email: ['', [Validators.required, Validators.pattern(/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim)]],
+    //password: ['23derd*334', [Validators.required]],
+    password: ['', [Validators.required]],
   })
 
   login() {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return this.openSnackBar('The username or password you entered is incorrect', 'Close');
+    }      
     const email = this.loginForm.controls['email'].value;
     const password = this.loginForm.controls['password'].value;
     this.isProgressBarVisible = true;
     this.authService.getUsers()
     .pipe(
-      delay(1000),
+      delay(2000),
       map(users => users.filter(user => {
         if(user.email === email && user.password === password && user.isActive) return user
          return
@@ -55,8 +62,8 @@ export class AuthComponent {
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+      verticalPosition: 'top',
     });
   }
 

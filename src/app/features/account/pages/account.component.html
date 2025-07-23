@@ -1,155 +1,111 @@
 <div class="container min-vw-100">
   <div class="row">
-    <app-tool-bar
-      color="primary"
-      [title]="titlePage"
-      class="removeLeftPadding removeRightPadding"
-    ></app-tool-bar>
+    <app-tool-bar color="primary" [title]="titlePage" [isProfileBanner]="false" class="removeLeftPadding removeRightPadding"></app-tool-bar>
   </div>
 </div>
-<mat-card
-  class="mat-elevation-z4 marginSmall paddingMedium"
-  style="min-width: 400px !important; max-height: 90vh"
->
+<mat-card class="mat-elevation-z4 marginSmall paddingMedium width-size">
   <div class="container min-vh-70">
     <div class="row align-items-center">
       <div class="col-12">
         <div class="row justify-content-center">
-          <mat-card
-            class="mat-elevation-z4"
-            style="max-width: 30vw; min-width: 300px; padding: 0"
-          >
-            <app-tool-bar
-              color="accent"
-              [title]="userData.name.first"
-            ></app-tool-bar>
+          <mat-card class="mat-elevation-z4 auth-card">
+            <app-tool-bar color="accent"  (menuEmmit)="menuEvt($event)" [title]="userData.name.first" [isProfileBanner]="true"></app-tool-bar>
             <div class="mat-elevation-z2 mt-2">
               <div class="row justify-content-center">
-                <div
-                  class="profile-container mt-3"
-                  (click)="triggerFileInput()"
-                >
-                  <img
-                    [src]="'http://localhost:3000/' + userData.picture"
-                    alt="profile image"
-                    class="profile-img"
-                  />
+                <div class="profile-container mt-3" (click)="triggerFileInput()">
+                  <img  [src]="'http://localhost:3000/' + userData.picture" alt="profile image" class="profile-img"/>
                   <div class="camera-icon">
                     <mat-icon id="edit-photo">photo_camera</mat-icon>
                   </div>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    #fileInput
-                    (change)="onImageSelected($event)"
-                    style="display: none"
-                  />
+                  <input type="file" class="hidden-image-button" accept="image/*" #fileInput (change)="onImageSelected($event)"/>
                 </div>
               </div>
               <div class="row justify-content-around mx-2 my-4">
-                <button
-                  mat-stroked-button
-                  color="primary"
-                  (click)="isBalanceDataShow = !isBalanceDataShow"
-                  style="width: 35%"
-                >
+                <button role="button" mat-stroked-button class="balance-button" color="primary" (click)="isBalanceDataShow = true" aria-label="balance button">
                   Balance
                 </button>
-                <button
-                  mat-stroked-button
-                  color="accent"
-                  (click)="isBalanceDataShow = !isBalanceDataShow"
-                  style="width: 35%"
-                >
+                <button role="button" mat-stroked-button class="edit-button" color="accent" (click)="isBalanceDataShow = false" aria-label="edit button">
                   Edit
                 </button>
               </div>
-
               <mat-card-content>
                 @if(isBalanceDataShow) {
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Name</mat-label>
-                  <input
-                    matInput
-                    disabled
-                    [value]="userData.name.first + ' ' + userData.name.last"
-                  />
-                  <mat-icon matSuffix disabled style="color: gray"
-                    >account_circle</mat-icon
-                  >
+                  <input matInput disabled [value]="userData.name.first + ' ' + userData.name.last"/>
+                  <mat-icon matSuffix disabled class="disabled-icon">account_circle</mat-icon>
                 </mat-form-field>
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Company</mat-label>
                   <input matInput disabled [value]="userData.company" />
-                  <mat-icon matSuffix style="color: gray">factory</mat-icon>
+                  <mat-icon matSuffix class="disabled-icon">factory</mat-icon>
                 </mat-form-field>
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Balance</mat-label>
                   <input matInput disabled [value]="userData.balance" />
-                  <mat-icon matSuffix style="color: gray">paid</mat-icon>
+                  <mat-icon matSuffix class="disabled-icon">paid</mat-icon>
                 </mat-form-field>
                 } @else {
                 <form class="example-form" [formGroup]="personalDetailsForm">
-                  <div class="row justify-content-center">
-                    <mat-form-field
-                      class="example-full-width"
-                      appearance="outline"
-                    >
+                  <div class="row justify-content-center my-3">
+                    <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>First name</mat-label>
-                      <input type="text" matInput formControlName="firstName" />
+                      <input type="text" matInput formControlName="firstName" aria-label="first name input"/>
                       <mat-icon matSuffix>account_circle</mat-icon>
+                      @if (personalDetailsForm.controls['firstName'].errors) {
+                        <mat-error role="alert">{{errorMessage}}</mat-error>
+                      }
                     </mat-form-field>
                   </div>
-                  <div class="row justify-content-center">
-                    <mat-form-field
-                      class="example-full-width"
-                      appearance="outline"
-                    >
+                  <div class="row justify-content-center my-3">
+                    <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>Last name</mat-label>
-                      <input type="text" matInput formControlName="lastName" />
+                      <input type="text" matInput formControlName="lastName" aria-label="lastname input" />
                       <mat-icon matSuffix>account_circle</mat-icon>
+                      @if (personalDetailsForm.controls['lastName'].errors) {
+                        <mat-error role="alert">{{errorMessage}}</mat-error>
+                      }
                     </mat-form-field>
                   </div>
-                  <div class="row justify-content-center">
-                    <mat-form-field
-                      class="example-full-width"
-                      appearance="outline"
-                    >
+                  <div class="row justify-content-center my-3">
+                    <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>Age</mat-label>
-                      <input type="text" matInput formControlName="age" />
+                      <input type="text" matInput formControlName="age"aria-label="age input" />
                       <mat-icon matSuffix>elderly_woman</mat-icon>
+                       @if (personalDetailsForm.controls['age'].errors) {
+                        <mat-error role="alert">{{errorMessage}}</mat-error>
+                      }
                     </mat-form-field>
                   </div>
-                  <div class="row justify-content-center">
-                    <mat-form-field
-                      class="example-full-width"
-                      appearance="outline"
-                    >
+                  <div class="row justify-content-center my-3">
+                    <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>Phone</mat-label>
-                      <input type="text" matInput formControlName="phone" />
+                      <input type="text" matInput formControlName="phone" aria-label="phone input" />
                       <mat-icon matSuffix>phone</mat-icon>
+                       @if (personalDetailsForm.controls['phone'].errors) {
+                        <mat-error role="alert">{{errorMessage}}</mat-error>
+                      }
                     </mat-form-field>
                   </div>
-                  <div class="row justify-content-center">
-                    <mat-form-field
-                      class="example-full-width"
-                      appearance="outline"
-                    >
+                  <div class="row justify-content-center my-3">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input type="text" matInput formControlName="email" aria-label="email input"/>
+                      <mat-icon matSuffix>alternate_email</mat-icon>
+                       @if (personalDetailsForm.controls['email'].errors) {
+                        <mat-error role="alert">{{errorMessage}}</mat-error>
+                      }
+                    </mat-form-field>
+                  </div>
+                  <div class="row justify-content-center my-3">
+                    <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>Address</mat-label>
-                      <input type="text" matInput formControlName="address" />
+                      <input type="text" matInput formControlName="address" aria-label="address input"/>
                       <mat-icon matSuffix>home</mat-icon>
                     </mat-form-field>
                   </div>
-                  <div
-                    class="marginLeftXtraSmall marginRightXtraSmall marginBottomSmall"
-                  >
-                    <button
-                      mat-raised-button
-                      color="primary"
-                      class="example-full-width"
-                      (click)="editPersonalDetails()"
-                      [disabled]="personalDetailsForm.pristine"
-                    >
+                  <div class="marginLeftXtraSmall marginRightXtraSmall marginBottomSmall">
+                    <button role="button" mat-raised-button color="primary" class="example-full-width" (click)="editPersonalDetails()" [disabled]="personalDetailsForm.pristine" aria-label="save button">
                       Save
                     </button>
                   </div>
@@ -158,9 +114,7 @@
               </mat-card-content>
             </div>
             <mat-card-footer>
-              <app-progress-bar
-                [isVisible]="isProgressBarVisible"
-              ></app-progress-bar>
+              <app-progress-bar [isVisible]="isProgressBarVisible"></app-progress-bar>
             </mat-card-footer>
           </mat-card>
         </div>

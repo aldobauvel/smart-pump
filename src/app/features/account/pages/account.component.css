@@ -1,5 +1,18 @@
+.width-size {
+  min-width: 400px !important;
+}
+
+.auth-card {
+  max-width: 30vw;
+  min-width: 300px; padding: 0;
+}
+
 img {
   border-radius: 50%;
+}
+
+.hidden-image-button {
+  display: none;
 }
 
 #edit-photo {
@@ -31,15 +44,28 @@ img {
   position: absolute;  
   bottom: 8px;
   right: 8px;
-  background-color: rgba(206, 206, 206, 0.6);
+  /* background-color: rgba(206, 206, 206, 0.6); */
+  background-color: rgba(0, 0, 0, 0.6);
   padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 50%;
-  opacity: 0;
+  /* opacity: 0; */
   transition: opacity 0.3s ease;
 }
 
 .profile-container:hover .camera-icon {
   opacity: 1;
+}
+
+.balance-button {
+  width: 35%;
+}
+
+.edit-button {
+  width: 35%;
+}
+
+.disabled-icon {
+  color: gray;
 }

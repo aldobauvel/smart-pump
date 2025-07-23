@@ -4,21 +4,25 @@
       <span class="justify-content-center">{{ title }}</span>
     </div>
     <div class="col-1 d-flex justify-content-end">
-      <button
-        mat-icon-button
-        [matMenuTriggerFor]="menu"
-        aria-label="Example icon-button with menu icon"
-      >
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu button">
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item *ngIf="false">
           <mat-icon>home</mat-icon>
           <span>Home</span>
         </button>
         <button mat-menu-item disabled>
           <mat-icon>account_circle</mat-icon>
           <span>Profile settings</span>
+        </button>
+        <button mat-menu-item *ngIf="isProfileBanner" (click)="menuOpt('balance')">
+          <mat-icon>balance</mat-icon>
+          <span>Balance</span>
+        </button>
+        <button mat-menu-item *ngIf="isProfileBanner" (click)="menuOpt('edit')">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
         </button>
         <button mat-menu-item (click)="openDialog()">
           <mat-icon>logout</mat-icon>
