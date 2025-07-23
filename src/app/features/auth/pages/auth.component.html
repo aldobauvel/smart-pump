@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row align-items-center min-vh-100">
+    <div class="col-12">
+      <div class="row justify-content-center">
+        <mat-card
+          class="example-card"
+          style="max-width: 20vw; min-width: 300px; padding: 0"
+        >
+          <div class="row justify-content-center">
+            <img
+              mat-card-image
+              src="../assets/images/logo.png"
+              style="max-width: 15vw"
+              alt="smart pump"
+            />
+          </div>
+          <mat-card-content>
+            <form class="example-form" [formGroup]="loginForm">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                  type="email"
+                  matInput
+                  placeholder="Ex. pat@example.com"
+                  formControlName="email"
+                />
+              </mat-form-field>
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" />
+              </mat-form-field>
+            </form>
+          </mat-card-content>
+          <div class="marginLeftLarge marginRightLarge marginBottomLarge">
+            <button
+              mat-raised-button
+              color="primary"
+              class="example-full-width"
+              (click)="login()"
+            >
+              Login
+            </button>
+          </div>
+          <mat-card-footer>
+            <app-progress-bar
+              [isVisible]="isProgressBarVisible"
+            ></app-progress-bar>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

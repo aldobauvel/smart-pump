@@ -1,1 +1,180 @@
-/* You can add global styles to this file, and also import other style files */
+   body {
+    background-color: #f5f6f7;
+   }
+
+   /* Margin */
+.marginXtraSmall {
+    margin: 5px !important
+}
+.marginSmall {
+    margin: 10px !important
+}
+.marginMedium {
+    margin: 15px !important
+}
+.marginLarge {
+    margin: 20px !important
+}
+
+/* Margin left */ 
+.marginLeftXtraSmall {
+    margin-left: 5px !important;
+}
+.marginLeftSmall {
+    margin-left: 10px !important;
+}
+.marginLeftMedium {
+    margin-left: 15px !important;
+}
+.marginLeftLarge {
+    margin-left: 20px !important;
+}
+
+/* Margin Top */
+.marginTopXtraSmall {
+    margin-top: 5px !important;
+}
+.marginTopSmall {
+    margin-top: 10px !important;
+}
+.marginTopMedium {
+    margin-top: 15px !important;
+}
+.marginTopLarge {
+    margin-top: 20px !important;
+}
+
+
+/* Margin Right */
+.marginRightXtraSmall {
+    margin-right: 5px !important;
+}
+.marginRightSmall {
+    margin-right: 10px !important;
+}
+.marginRightMedium {
+    margin-right: 15px !important;
+}
+.marginRightLarge {
+    margin-right: 20px !important;
+}
+/* Margin Bottom */
+.marginBottomXtraSmall {
+    margin-bottom: 5px !important;
+}
+.marginBottomSmall {
+    margin-bottom: 10px !important;
+}
+.marginBottomMedium {
+    margin-bottom: 15px !important;
+}
+.marginBottomLarge {
+    margin-bottom: 20px !important;
+}
+
+/* REMOVE MARGIN */
+.removeMargin {
+    margin: 0px !important;
+}
+.removeLeftMargin {
+    margin-left: 0px !important;
+}
+.removeTopMargin {
+    margin-top: 0px !important;
+}
+.removeRightMargin {
+    margin-right: 0px !important;
+}
+.removeBottomMargin {
+    margin-bottom: 0px !important;
+}
+/* PADDING */
+.paddingXtraSmall {
+    padding: 5px !important;
+}
+.paddingSmall {
+    padding: 10px !important;
+}
+.paddingMedium {
+    padding: 15px !important;
+}
+.paddingLarge {
+    padding: 20px !important;
+}
+
+
+/* PADDING LEFT */
+.paddingLeftXtraSmall {
+    padding-left: 5px !important;
+}
+.paddingLeftSmall {
+    padding-left: 10px !important;
+}
+.paddingLeftMedium {
+    padding-left: 15px !important;
+}
+.paddingLeftLarge {
+    padding-left: 20px !important;
+}
+
+/* PADDING TOP */
+.paddingTopXtraSmall {
+    padding-top: 5px !important;
+}
+.paddingTopSmall {
+    padding-top: 10px !important;
+}
+.paddingTopMedium {
+    padding-top: 15px !important;
+}
+.paddingTopLarge {
+    padding-top: 20px !important;
+}
+
+
+/* PADDING RIGHT */
+.paddingRightXtraSmall {
+    padding-right: 5px !important;
+}
+.paddingRightSmall {
+    padding-right: 10px !important;
+}
+.paddingRightMedium {
+    padding-right: 15px !important;
+}
+.paddingRightLarge {
+    padding-right: 20px !important;
+}
+
+
+/* PADDING BOTTOM */
+.paddingBottomXtraSmall {
+    padding-bottom: 5px !important;
+}
+.paddingBottomSmall {
+    padding-bottom: 10px !important;
+}
+.paddingBottomMedium {
+    padding-bottom: 15px !important;
+}
+.paddingBottomLarge {
+    padding-bottom: 20px !important;
+}
+
+
+/* REMOVE PADDING*/
+.removePadding {
+    padding: 0px !important;
+}
+.removeLeftPadding {
+    padding-left: 0px !important;
+}
+.removeTopPadding {
+    padding-top: 0px !important;
+}
+.removeRightPadding {
+    padding-right: 0px !important;
+}
+.removeBottomPadding {
+    padding-bottom: 0px !important;
+}

@@ -1,0 +1,170 @@
+<div class="container min-vw-100">
+  <div class="row">
+    <app-tool-bar
+      color="primary"
+      [title]="titlePage"
+      class="removeLeftPadding removeRightPadding"
+    ></app-tool-bar>
+  </div>
+</div>
+<mat-card
+  class="mat-elevation-z4 marginSmall paddingMedium"
+  style="min-width: 400px !important; max-height: 90vh"
+>
+  <div class="container min-vh-70">
+    <div class="row align-items-center">
+      <div class="col-12">
+        <div class="row justify-content-center">
+          <mat-card
+            class="mat-elevation-z4"
+            style="max-width: 30vw; min-width: 300px; padding: 0"
+          >
+            <app-tool-bar
+              color="accent"
+              [title]="userData.name.first"
+            ></app-tool-bar>
+            <div class="mat-elevation-z2 mt-2">
+              <div class="row justify-content-center">
+                <div
+                  class="profile-container mt-3"
+                  (click)="triggerFileInput()"
+                >
+                  <img
+                    [src]="'http://localhost:3000/' + userData.picture"
+                    alt="profile image"
+                    class="profile-img"
+                  />
+                  <div class="camera-icon">
+                    <mat-icon id="edit-photo">photo_camera</mat-icon>
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    #fileInput
+                    (change)="onImageSelected($event)"
+                    style="display: none"
+                  />
+                </div>
+              </div>
+              <div class="row justify-content-around mx-2 my-4">
+                <button
+                  mat-stroked-button
+                  color="primary"
+                  (click)="isBalanceDataShow = !isBalanceDataShow"
+                  style="width: 35%"
+                >
+                  Balance
+                </button>
+                <button
+                  mat-stroked-button
+                  color="accent"
+                  (click)="isBalanceDataShow = !isBalanceDataShow"
+                  style="width: 35%"
+                >
+                  Edit
+                </button>
+              </div>
+
+              <mat-card-content>
+                @if(isBalanceDataShow) {
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Name</mat-label>
+                  <input
+                    matInput
+                    disabled
+                    [value]="userData.name.first + ' ' + userData.name.last"
+                  />
+                  <mat-icon matSuffix disabled style="color: gray"
+                    >account_circle</mat-icon
+                  >
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Company</mat-label>
+                  <input matInput disabled [value]="userData.company" />
+                  <mat-icon matSuffix style="color: gray">factory</mat-icon>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Balance</mat-label>
+                  <input matInput disabled [value]="userData.balance" />
+                  <mat-icon matSuffix style="color: gray">paid</mat-icon>
+                </mat-form-field>
+                } @else {
+                <form class="example-form" [formGroup]="personalDetailsForm">
+                  <div class="row justify-content-center">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>First name</mat-label>
+                      <input type="text" matInput formControlName="firstName" />
+                      <mat-icon matSuffix>account_circle</mat-icon>
+                    </mat-form-field>
+                  </div>
+                  <div class="row justify-content-center">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Last name</mat-label>
+                      <input type="text" matInput formControlName="lastName" />
+                      <mat-icon matSuffix>account_circle</mat-icon>
+                    </mat-form-field>
+                  </div>
+                  <div class="row justify-content-center">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Age</mat-label>
+                      <input type="text" matInput formControlName="age" />
+                      <mat-icon matSuffix>elderly_woman</mat-icon>
+                    </mat-form-field>
+                  </div>
+                  <div class="row justify-content-center">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Phone</mat-label>
+                      <input type="text" matInput formControlName="phone" />
+                      <mat-icon matSuffix>phone</mat-icon>
+                    </mat-form-field>
+                  </div>
+                  <div class="row justify-content-center">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Address</mat-label>
+                      <input type="text" matInput formControlName="address" />
+                      <mat-icon matSuffix>home</mat-icon>
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="marginLeftXtraSmall marginRightXtraSmall marginBottomSmall"
+                  >
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      class="example-full-width"
+                      (click)="editPersonalDetails()"
+                      [disabled]="personalDetailsForm.pristine"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </form>
+                }
+              </mat-card-content>
+            </div>
+            <mat-card-footer>
+              <app-progress-bar
+                [isVisible]="isProgressBarVisible"
+              ></app-progress-bar>
+            </mat-card-footer>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,45 @@
+img {
+  border-radius: 50%;
+}
+
+#edit-photo {
+  color: white;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.profile-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+
+.profile-img {
+  border: 1px solid black;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: 0.3s ease;
+  display: block;
+}
+
+.camera-icon {
+  position: absolute;  
+  bottom: 8px;
+  right: 8px;
+  background-color: rgba(206, 206, 206, 0.6);
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-container:hover .camera-icon {
+  opacity: 1;
+}

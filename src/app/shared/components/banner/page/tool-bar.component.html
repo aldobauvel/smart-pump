@@ -1,0 +1,30 @@
+<mat-toolbar [color]="color" [title]="title" class="mat-elevation-z4">
+  <mat-toolbar-row>
+    <div class="col-11 d-flex justify-content-center">
+      <span class="justify-content-center">{{ title }}</span>
+    </div>
+    <div class="col-1 d-flex justify-content-end">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>account_circle</mat-icon>
+          <span>Profile settings</span>
+        </button>
+        <button mat-menu-item (click)="openDialog()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
