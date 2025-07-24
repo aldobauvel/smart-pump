@@ -13,8 +13,8 @@
             <div class="mat-elevation-z2 mt-2">
               <div class="row justify-content-center">
                 <div class="profile-container mt-3" (click)="triggerFileInput()">
-                  <img  [src]="'http://localhost:3000/' + userData.picture" alt="profile image" class="profile-img"/>
-                  <div class="camera-icon">
+                  <img  [src]="'http://localhost:3000/' + userData.picture" alt="profile image" class="profile-img" matTooltip="Change image"/>
+                  <div class="camera-icon" matTooltip="Change image">
                     <mat-icon id="edit-photo">photo_camera</mat-icon>
                   </div>
                   <input type="file" class="hidden-image-button" accept="image/*" #fileInput (change)="onImageSelected($event)"/>

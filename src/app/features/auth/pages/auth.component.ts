@@ -24,9 +24,9 @@ export class AuthComponent {
   ){}
 
   loginForm: FormGroup = this.fb.group({
-    //email: ['henderson.briggs@geeknet.net', [Validators.required, Validators.email]],
+    //email: ['henderson.briggs@geeknet.net', [Validators.required, Validators.email]], //testing purpouse
     email: ['', [Validators.required, Validators.email]],
-    //password: ['23derd*334', [Validators.required]],
+    //password: ['23derd*334', [Validators.required]], // testing purpouse
     password: ['', [Validators.required]],
   })
 
