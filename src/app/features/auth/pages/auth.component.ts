@@ -24,8 +24,8 @@ export class AuthComponent {
   ){}
 
   loginForm: FormGroup = this.fb.group({
-    //email: ['henderson.briggs@geeknet.net', [Validators.required, Validators.pattern(/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim)]],
-    email: ['', [Validators.required, Validators.pattern(/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim)]],
+    //email: ['henderson.briggs@geeknet.net', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email]],
     //password: ['23derd*334', [Validators.required]],
     password: ['', [Validators.required]],
   })

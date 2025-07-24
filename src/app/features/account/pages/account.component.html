@@ -32,21 +32,21 @@
                 @if(isBalanceDataShow) {
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Name</mat-label>
-                  <input matInput disabled [value]="userData.name.first + ' ' + userData.name.last"/>
+                  <input matInput disabled [value]="userData.name.first + ' ' + userData.name.last" data-testid="name"/>
                   <mat-icon matSuffix disabled class="disabled-icon">account_circle</mat-icon>
                 </mat-form-field>
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Company</mat-label>
-                  <input matInput disabled [value]="userData.company" />
+                  <input matInput disabled [value]="userData.company" data-testid="company"/>
                   <mat-icon matSuffix class="disabled-icon">factory</mat-icon>
                 </mat-form-field>
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Balance</mat-label>
-                  <input matInput disabled [value]="userData.balance" />
+                  <input matInput disabled [value]="userData.balance"/>
                   <mat-icon matSuffix class="disabled-icon">paid</mat-icon>
                 </mat-form-field>
                 } @else {
-                <form class="example-form" [formGroup]="personalDetailsForm">
+                <form class="example-form" [formGroup]="personalDetailsForm" (ngSubmit)="editPersonalDetails()">
                   <div class="row justify-content-center my-3">
                     <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>First name</mat-label>
@@ -105,7 +105,7 @@
                     </mat-form-field>
                   </div>
                   <div class="marginLeftXtraSmall marginRightXtraSmall marginBottomSmall">
-                    <button role="button" mat-raised-button color="primary" class="example-full-width" (click)="editPersonalDetails()" [disabled]="personalDetailsForm.pristine" aria-label="save button">
+                    <button type="submit" role="button" mat-raised-button color="primary" class="example-full-width" [disabled]="personalDetailsForm.pristine" aria-label="save button">
                       Save
                     </button>
                   </div>

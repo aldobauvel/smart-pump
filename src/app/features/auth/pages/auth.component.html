@@ -7,7 +7,7 @@
             <img mat-card-image  src="../assets/images/logo.png" alt="smart pump logo"/>
           </div>
           <mat-card-content>
-            <form class="example-form" [formGroup]="loginForm">
+            <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
               <mat-form-field class="example-full-width my-3" appearance="outline">
                 <mat-label>Email</mat-label>
                 <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email" aria-label="email input"/>
@@ -24,13 +24,14 @@
                   <mat-error role="alert">{{errorMessage}}</mat-error>
                 }
               </mat-form-field>
+              <div class="marginLeftLarge marginRightLarge marginBottomLarge">
+                <button type="submit" role="button" mat-raised-button color="primary" role="button" class="example-full-width" aria-label="Login button" [disabled]="loginForm.pristine">
+                  Login
+                </button>
+          </div>
             </form>
           </mat-card-content>
-          <div class="marginLeftLarge marginRightLarge marginBottomLarge">
-            <button role="button" mat-raised-button color="primary" role="button" class="example-full-width" (click)="login()" aria-label="Login button">
-              Login
-            </button>
-          </div>
+          
           <mat-card-footer>
             <app-progress-bar [isVisible]="isProgressBarVisible"></app-progress-bar>
           </mat-card-footer>
